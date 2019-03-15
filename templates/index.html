@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/jquery-1.10.2.js"></script>
+</head>
+<body>
+<input id="up" type="file" name="myfile">
+<button id="upbutton">click</button>
+</body>
+
+<script>
+    $(function () {
+        var ufile = $('#upbutton');
+        ufile.click(function () {
+            var formData = new FormData();
+            formData.append("myfile", document.getElementById("up").files[0]);
+            $.ajax({
+                url: "/up/",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log('123')
+                },
+                error: function () {
+                    console.log('456')
+                }
+            });
+        });
+    });
+</script>
+
+</html>
